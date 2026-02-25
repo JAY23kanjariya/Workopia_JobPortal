@@ -23,9 +23,8 @@ class AuthController extends Controller
                 'string',
                 'min:8',
                 'max:20',
-                'confirmed',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%&_\-+?]).*$/'            ],
-            'role' => 'required|in:admin,employer,jobseeker',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%&_\-+?]).*$/'],
+            'role' => 'required|in:admin,employer,job_seeker',
         ]);
 
         // if validation fails, return error response
@@ -42,7 +41,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'jobseeker',
+            'role' => $request->role ?? 'job_seeker',
         ]);
 
         // create token for the register user
@@ -99,6 +98,17 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Logout Successfully'
+        ], 200);
+    }
+
+    // method to get the authenticated user
+    public function user(Request $request)
+    {
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User Fetched Successfully',
+            'data' => $request->user(),
         ], 200);
     }
 }

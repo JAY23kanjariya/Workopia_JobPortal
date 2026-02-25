@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+// uses 
+use App\Models\Job;
+use App\Models\Application;
 
 class User extends Authenticatable
 {
@@ -46,5 +49,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // relations Employer (User) has many jobs
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
+
+    // relations Job Seeker (User) has many applications
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 }
