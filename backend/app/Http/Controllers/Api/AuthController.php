@@ -24,7 +24,7 @@ class AuthController extends Controller
                 'min:8',
                 'max:20',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%&_\-+?]).*$/'],
-            'role' => 'required|in:admin,employer,job_seeker',
+            'role' => 'required|in:admin,employer,jobseeker',
         ]);
 
         // if validation fails, return error response
@@ -41,7 +41,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'job_seeker',
+            'role' => $request->role ?? 'jobseeker',
         ]);
 
         // create token for the register user

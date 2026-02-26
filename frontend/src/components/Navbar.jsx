@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/logo3.jfif';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,9 +12,17 @@ export default function Navbar() {
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center">
-                        <Link to="/" className="text-2xl font-extrabold tracking-wider">
-                            WORK<span className="text-yellow-500">OPIA</span>
+                    <div className="flex-shrink-0">
+                        <Link to="/" className="flex items-center text-2xl font-extrabold tracking-wider">
+                            WORK
+                            <span className="flex items-center text-yellow-500">
+                                <img
+                                    src={Logo}
+                                    alt="Workopia Logo"
+                                    className="h-10 w-10 mx-1 rounded-full border-2 border-yellow-500 object-cover"
+                                />
+                                PIA
+                            </span>
                         </Link>
                     </div>
 
@@ -78,7 +87,7 @@ export default function Navbar() {
                         Register
                     </Link>
                     <Link
-                        to="/homepage"  
+                        to="/homepage"
                         className="block px-3 py-2 mt-4 text-center bg-yellow-500 text-blue-900 rounded-md text-base font-bold"
                     >
                         Post a Job
